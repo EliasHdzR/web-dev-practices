@@ -3,9 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Registro - Panadería "El Popochas"</title>
 </head>
 <body>
-    
+    <div class="topnav">
+        <h1>Panadería "El Popochas"</h1>
+        <hr>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </div>
+
+    <div class="login" style="height: auto; margin-top: 150px;">
+        <fieldset style="width: 90%; height: 90%;">
+            <legend>Registrarse</legend>
+            <table>
+                <!-- NOMBRE -->
+                <tr>
+                    <td>
+                        <label">Nombre</label>
+                    </td>
+                    <td style="width: 250px;">
+                        <input type="text" style="width: 100%;" autofocus/>
+                    </td>
+                </tr>
+
+                <!-- APELLIDOS -->
+                <tr>
+                    <td>
+                        <label">Apellidos</label>
+                    </td>
+                    <td style="width: 250px;">
+                        <input type="text" style="width: 100%;"/>
+                    </td>
+                </tr>
+
+                <!-- APELLIDOS -->
+                <tr>
+                    <td>
+                        <label">Fecha de Nacimiento</label>
+                    </td>
+                    <td style="width: 250px;">
+                        <input type="date" style="width: 100%;"/>
+                    </td>
+                </tr>
+
+                <!-- CORREO -->
+                <tr>
+                    <td>
+                        <label">Correo Electrónico</label>
+                    </td>
+                    <td style="width: 250px;">
+                        <input type="email" style="width: 100%;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label">Confirmar Correo</label>
+                    </td>
+                    <td style="width: 250px;">
+                        <input type="email" style="width: 100%;"/>
+                    </td>
+                </tr>
+
+                <!-- CONTRASEÑA -->
+                <tr>
+                    <td>
+                        <label">Contraseña</label>
+                    </td>
+                    <td>
+                        <input type="password" style="width: 100%;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label">Confirmar Contraseña</label>
+                    </td>
+                    <td>
+                        <input type="password" style="width: 100%;"/>
+                    </td>
+                </tr>
+
+                <!-- BTN REGISTRO -->
+                <tr>
+                    <td></td>
+                    <td style="padding-left: 78px; padding-top: 10px; padding-bottom: 10px;">
+                        <a href="index.html" style="width: 100%;">Crear Cuenta</a>
+                    </td>
+                </tr>
+
+                <!-- INICIO SESION -->
+                <tr>
+                    <td>¿Ya tienes una cuenta?</td>
+                    <td>
+                        <a href="login.html">Inicia Sesión</a>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
 </body>
 </html>

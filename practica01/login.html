@@ -3,40 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Login - Panadería "El Popochas"</title>
 </head>
 <body>
-    <div style="width: 500px; margin-left: auto; margin-right: auto; margin-top: 300px; background-color: azure;"">
-        <fieldset style="width: 100%;">
+    <div class="topnav">
+        <h1>Panadería "El Popochas"</h1>
+        <hr>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </div>
+
+    <div class="login">
+        <fieldset style="width: 90%; height: 90%;">
             <legend>Ingresar</legend>
             <table>
+                <!-- CUENTA -->
                 <tr>
                     <td>
-                        <label for="input-username">Nombre de Usuario</label>
+                        <label">Correo Electrónico</label>
                     </td>
                     <td style="width: 250px;">
-                        <input type="text" style="width: 100%;" name="username" id="txt-username" autofocus/>
+                        <input type="text" style="width: 100%;" autofocus/>
                     </td>
                 </tr>
+
+                <!-- CONTRASEÑA -->
                 <tr>
                     <td>
-                        <label for="input-password">Contraseña</label>
+                        <label">Contraseña</label>
                     </td>
                     <td>
-                        <input type="password" style="width: 100%;" name="password" id="input-password"/>
+                        <input type="password" style="width: 100%;"/>
                     </td>
                 </tr>
+
+                <!-- BTN LOGIN  -->
                 <tr>
                     <td></td>
-                    <td>
+                    <td style="padding-left: 78px; padding-top: 10px; padding-bottom: 10px;">
                         <a href="index.html" style="width: 100%;">Iniciar Sesión</a>
                     </td>
                 </tr>
-                <tr><td><br></td></tr>
+
+                <!-- RECUERDAME -->
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="checkbox">
+                        <label>Recuérdame</label>
+                    </td>
+                </tr>
+
+                <!-- REGISTRATSE -->
                 <tr>
                     <td>¿No tienes una cuenta?</td>
                     <td>
-                        <a href="registro.html" >Regístrate</a>
+                        <a href="registro.html">Regístrate</a>
                     </td>
                 </tr>
             </table>

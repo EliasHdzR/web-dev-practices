@@ -1,0 +1,86 @@
+.topnav {
+    background-color: #E1CDB5;
+    overflow: hidden;
+    padding: 14px 16px;
+}
+
+.topnav a {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #558B6E;
+    color: black;
+}
+
+.topnav a:hover {
+    background-color: #7C5641;
+    color: black;
+}
+
+.login {
+    width: 500px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #E1CDB5;
+}
+
+.login a {
+    text-decoration: none;
+    background-color: #558B6E;
+    padding: 5px 10px;
+    color: black;
+}
+
+.login a:hover {
+    background-color: #7C5641;
+    color: black;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 10px;
+}
+
+.articulo {
+    width: 300px;
+    height: 400px;
+    background-color: #3C2A22;
+    margin: 15px;
+}
+
+.artImg {
+    width: 300px;
+    height: 300px;
+}
+
+.artInfo {
+    display: grid;
+    background-color:#AB795F;
+    text-align: center;
+    width: 200px;
+    height: 65px;
+    margin-left: 50px;
+    margin-right: 45px;
+    padding-top: 10px;
+}
+
+.artInfo a {
+    text-decoration: none;
+    background-color: #558B6E;
+    margin-top: 5px;
+    padding: 5px 10px;
+    color: black;
+}
+
+.artInfo a:hover {
+    background-color: #7C5641;
+    color: black;
+}
