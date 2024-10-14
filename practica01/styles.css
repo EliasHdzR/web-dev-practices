@@ -1,3 +1,11 @@
+.bodyFondo{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/panes.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
 .topnav {
     background-color: #E1CDB5;
     overflow: hidden;
@@ -17,6 +25,36 @@
 .topnav a:hover {
     background-color: #7C5641;
     color: black;
+}
+
+.imagenMain {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/panes.jpeg");
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.textoMain {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.productosDestacados {
+    background-color: #E1CDB5;
+    text-align: center;
+}
+
+.productosDestacados h2 {
+    font-size: xx-large;
+    margin: auto;
+    padding-top: 40px;
+    padding-bottom: 20px;
 }
 
 .login {
@@ -81,6 +119,59 @@
 }
 
 .artInfo a:hover {
+    background-color: #7C5641;
+    color: black;
+}
+
+.grid2 {
+    display: grid;
+    grid-template-columns: 850px 350px;
+    padding: 10px;
+    margin-left: 275px;
+    margin-right: 300px;
+}
+
+.detalleIzq {
+    background-color: #3C2A22;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.sideImagenes {
+    width: 200px; /* Set the width of the sidebar */
+    padding-top: 5px;
+}
+
+.sideImagenes img {
+    width: 200px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.sideImagenes img:hover {
+    opacity: 1;
+}
+
+.imagenSeleccionada {
+    width: 650px;
+}
+
+.detalleDer {
+    background-color:#AB795F;
+    text-align: center;
+    padding: 10px;
+}
+
+.detalleDer button {
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #558B6E;
+    color: black;
+}
+
+.detalleDer button:hover {
     background-color: #7C5641;
     color: black;
 }
