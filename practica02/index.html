@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Práctica 2 - Gato</title>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Tic Tac Toe - Minimalista</h1>
+
+        <div class="puntuaciones-contenedor">
+            <button class="btn-puntuaciones">Puntuaciones</button>
+            <div class="puntuaciones-dropdown">
+                <table id="puntuaciones-tabla">
+                    <tr>
+                        <th>Lugar</th>
+                        <th>Nombre</th>
+                        <th>Tiempo</th>
+                        <th>Fecha</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <p style="font-size: 30px;"><span id="minutos">00</span>:<span id="segundos">00</span>:<span
+                id="decimas">00</span></p>
+        <p id="p-aviso">Haz clic en un espacio para iniciar</p>
+
+        <div class="contenedor">
+            <table class="tablero" id="tablero">
+                <tr>
+                    <td id="cuadrado-1"></td>
+                    <td id="cuadrado-2"></td>
+                    <td id="cuadrado-3"></td>
+                </tr>
+                <tr>
+                    <td id="cuadrado-4"></td>
+                    <td id="cuadrado-5"></td>
+                    <td id="cuadrado-6"></td>
+                </tr>
+                <tr>
+                    <td id="cuadrado-7"></td>
+                    <td id="cuadrado-8"></td>
+                    <td id="cuadrado-9"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="margin-top: 10px; display: none;" id="form-ganador">
+            <label>Nombre del Jugador</label>
+            <input type="text" id="nombre"><br>
+            <button class="guardar" id="btn-guardar">Guardar</button>
+        </div>
+        <div style="margin-top: 10px; display: none;" id="div-perdedor">
+            <button class="guardar" id="btn-reintentar">Reintentar</button>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
