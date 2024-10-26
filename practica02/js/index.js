@@ -22,7 +22,7 @@ function guardarPuntaje(){
         nombre: inputNombre.value,
         tiempoFormateado: tiempoFormateado,
         tiempoReal: tiempoReal,
-        fecha: fecha.toDateString()
+        fecha: fecha.toUTCString(),
     }
 
     localStorage.setItem(Date.now(), JSON.stringify(puntaje));
