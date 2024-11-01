@@ -3,7 +3,6 @@ const btnReintentar = document.querySelector('#btn-reintentar');
 btnReintentar.addEventListener('click', reiniciarJuego);
 const btnGuardar = document.querySelector('#btn-guardar');
 btnGuardar.addEventListener('click', guardarPuntaje);
-let numRegistros;
 
 function guardarPuntaje(){
     const inputNombre = document.querySelector('#nombre');
@@ -113,7 +112,6 @@ function volverFuncional(cuadrado) {
 /**
  * 
  * Esta funcion solo se activa una vez por partida del gato
- * @param {*} cuadrado 
  */
 function inicializar() {
     if (!relojIniciado) {

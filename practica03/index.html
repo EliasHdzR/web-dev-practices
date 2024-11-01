@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Práctica 3 - Buscaminas</title>
+</head>
+<body>
+    <div class="app">
+        <div class="eleccion-container">
+            <label>Ingresa un tamaño personalizado: </label>
+            <input id="input-filas" type="number" min="5" placeholder="Min. 5">
+            <input id="input-columnas" type="number" min="5" placeholder="Min. 5">
+            <button id="btn-tamano">Iniciar</button>
+
+            <label>ó Elige una Dificultad</label>
+            <button id="btn-facil">Fácil</button>
+            <button id="btn-medio">Medio</button>
+            <button id="btn-dificil">Difícil</button>
+            <button id="btn-m-dificil">Muy Difícil</button>
+            <button id="btn-hardcore">Hardcore</button>
+            <button id="btn-leyenda">Leyenda</button>
+        </div>
+
+        <div class="juego-container" style="display: none">
+            <table class="tabla-juego" id="tablero">
+            </table>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>
