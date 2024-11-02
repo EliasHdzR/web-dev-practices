@@ -8,10 +8,16 @@
 </head>
 <body>
     <div class="app">
+        <div class="titulo">
+            <h1>Buscaminas</h1>
+            <p id="h-info" style="display: none;"></p>
+        </div>
         <div class="eleccion-container">
             <label>Ingresa un tamaño personalizado: </label>
-            <input id="input-filas" type="number" min="5" placeholder="Min. 5">
-            <input id="input-columnas" type="number" min="5" placeholder="Min. 5">
+            <input id="input-filas" type="number" min="5" placeholder="Filas (Minimo 5)">
+            <input id="input-columnas" type="number" min="5" placeholder="Columnas (Minimo 5)">
+            <label>Ingresa la cantidad de minas: </label>
+            <input id="input-minas" type="number" min="5" placeholder="Min. 5, Max. (Filas * Columnas) - 1">
             <button id="btn-tamano">Iniciar</button>
 
             <label>ó Elige una Dificultad</label>
@@ -22,7 +28,10 @@
             <button id="btn-hardcore">Hardcore</button>
             <button id="btn-leyenda">Leyenda</button>
         </div>
-
+        <div class="aviso" style="display: none">
+            <h2 id="h-aviso"></h2>
+            <button id="btn-reiniciar">Reiniciar</button>
+        </div>
         <div class="juego-container" style="display: none">
             <table class="tabla-juego" id="tablero">
             </table>

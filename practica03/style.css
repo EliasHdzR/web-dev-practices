@@ -3,7 +3,7 @@ body {
     justify-content: center;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 15vw;
+    padding: 5vw;
 }
 
 .app {
@@ -24,6 +24,10 @@ body {
     margin: 8px;
 }
 
+.eleccion-container input {
+    width: 250px;
+}
+
 .eleccion-container button {
     width: 100px;
     margin: 5px;
@@ -34,8 +38,14 @@ body {
     border-collapse: collapse;
 }
 
-.tabla-juego button {
+.tabla-juego td {
     height: 30px;
     width: 30px;
-    box-shadow: 0 9px #999;
+    border: 1px solid black;
+}
+
+.tabla-juego button {
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
