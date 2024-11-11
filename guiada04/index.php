@@ -1,29 +1,38 @@
 <?php
-  $tituloPagina = "Guiada 04: Introducción a la programación del Lado del Servidor";
-?>
+    $tituloPagina = "Guiada 04: Introducción a la programación del Lado del Servidor";
 
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $tituloPagina; ?></title>
-</head>
-<body>
-    <h1><?=$tituloPagina?></h1>
-    <p>Ejemplo de generacion de HTML dinámico usando PHP</p>
-    <ul>
-        <?php
-            for($i = 0; $i < 10; $i++){
-                echo "<li>Hola Mundo $i</li>";
-            }
-        ?>
-    </ul>
-    <p>Otra lista generada por PHP</p>
-    <ul>
-        <?php for($i = 0; $i < 15; $i++): ?>
-             <li>Hola Mundo <?=$i?></li>
-        <?php endfor ?>
-    </ul>
-</body>
-</html>
+    $persona1 = [
+        'nombre' => 'Persona 1',
+        'apellidos' => 'Apellido 1',
+        'edad' => 32,
+        'deportesPracticados' => [
+            'futbol','tenis','basquet'
+        ]
+    ];
+
+    $persona2 = array(
+        'nombre' => 'Persona 2',
+        'apellidos' => 'Apellido 2',
+        'edad' => 30,
+        'deportesPracticados' => [
+            'futbol americano','baseball','basquet'
+        ]
+    );
+
+    $personas = [$persona1, $persona2];
+
+    $deportesPersona1 = $persona1['deportesPracticados'];
+
+    $persona3 = array(
+        'nombre' => 'Persona 3',
+        'apellidos' => 'Apellido 3',
+        'edad' => 36,
+        'deportesPracticados' => [
+            'futbol americano'
+        ]
+    );
+
+    $personas[] = $persona3;
+
+    require 'index.view.php';
+
