@@ -10,7 +10,7 @@ if (!$titulo) {  // si no se pasó el título
     exit();  // terminamos la ejecución
 }
 
-$tituloPagina = "Práctica 04 - " . $titulo;
+$tituloPagina = "Práctica 05 - " . $titulo;
 
 ?>
 

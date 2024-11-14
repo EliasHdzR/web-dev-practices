@@ -3,11 +3,15 @@
 // Para obtener el archivo con las configuraciones de la app
 require "config.php";
 
+header("Content-Type: application/json");
+$resObj = ["error" => NULL, "mensaje" => NULL];
+
 // Validación de que se envió el archivo
 //Mismo nombre que el que se encuentra en el name de su casilla correspondiente en el forms
 if (empty($_FILES) || !isset($_FILES["archivo"])) {
     // Si no se envió el archivo, redirect al App Root (Home)
-    header("Location: " . APP_ROOT);
+    $resObj["error"] = "Archivo no especificado";
+    echo json_encode($resObj);
     exit();  // finalizamos la ejecución de este archivo PHP
 }
 
@@ -23,13 +27,13 @@ $rutaAGuardar = DIR_UPLOAD . $nombreArchivo;
 // Guardamos el archivo del directorio temporal a la ruta final
 $seGuardoArchivo = move_uploaded_file($rutaTemporal, $rutaAGuardar); 
 if (!$seGuardoArchivo) {  // No se guardo?
-    // TODO: Mejorar el control de errores para cuando no se guarda
-    echo "NO SE GUARDO :(";
+    $resObj["error"] = "No se pudo guardar el archivo :(";
+    echo json_encode($resObj);
     exit();
 }
 
 // Además de archivos, podermos recibir más datos
 $otroDato = filter_input(INPUT_POST, "otroDato");
 
-// Redirect al Home después de guardar el archivo
-header("Location: " . APP_ROOT );
+$resObj["mensaje"] = "Archivo guardado correctamente";
+echo json_encode($resObj);

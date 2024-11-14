@@ -16,7 +16,7 @@ if (!$nombre || !$apellidos) {
     exit();  // Finaliza la ejecución del código PHP
 }
 
-$tituloPagina = "Práctica 04 - Recibir Por POST";
+$tituloPagina = "Práctica 05 - Recibir Por POST";
 
 ?>
 
@@ -33,7 +33,7 @@ $tituloPagina = "Práctica 04 - Recibir Por POST";
 <body>
 
     <div class="header">
-        <h1>Práctica 04</h1>
+        <h1>Práctica 05</h1>
         <h2>Basic Server Side Programming</h2>
     </div>
       

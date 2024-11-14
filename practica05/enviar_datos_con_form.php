@@ -4,7 +4,7 @@
 require_once "config.php";
 
 // Diferentes tipos de variables
-$tituloPagina = "Práctica 04 - Server Side Programming";  // variable string
+$tituloPagina = "Práctica 05 - Server Side Programming";  // variable string
 $hoy = new DateTime("now");  // variable DateTime (object)
 $numeroEnter = 100;  // variable int
 $numeroDecimal = 3.14159;  // variable float
@@ -37,7 +37,7 @@ $articulos = [
 <body>
 
     <div class="header">
-        <h1>Práctica 04</h1>
+        <h1>Práctica 05</h1>
         <h2>Basic Server Side Programming</h2>
     </div>
       
