@@ -18,6 +18,15 @@
         $stmt->execute($sqlParams);
     }
 
+    function actualizarPassword($usuario){
+        $encrypted_data = encrypt_password($usuario["password"]);
+        $sqlCmd = "UPDATE usuarios SET password_encrypted = ?, password_salt = ? WHERE id = ?";
+        $sqlParams = [$encrypted_data[0], $encrypted_data[1], $usuario["id"]];
+        $db = getDbConnection();
+        $stmt = $db->prepare($sqlCmd);
+        $stmt->execute($sqlParams);
+    }
+
     function encrypt_password($password){
         $tamanioBytes = 32;
         $bytesRandom = random_bytes($tamanioBytes);

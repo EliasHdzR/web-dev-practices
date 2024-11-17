@@ -13,12 +13,12 @@
 
     /// VALIDAR QUE ESTÉN LLENOS
     if (!$name) {
-        $error = ["pos" => "1", "msg" => "Debe introducir un nombre"];
+        $error = ["pos" => "0", "msg" => "Debe introducir un nombre"];
         $errors[] = $error;
     }
 
     if (!$gender) {
-        $error = ["pos" => "2", "msg" => "Seleccione una opción válida"];
+        $error = ["pos" => "1", "msg" => "Seleccione una opción válida"];
         $errors[] = $error;
     }
 

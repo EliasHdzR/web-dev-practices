@@ -61,13 +61,15 @@ btn_update.addEventListener("click", async e => {
         confirmButtonText: 'Continuar'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "/practicas/practica05-1/logout.php"
+            window.location.href = "/practicas/practica05-1/logout.php";
         }
     });
 });
 
 btn_update_password.addEventListener("click", async e => {
     e.preventDefault();
+    password = inputPassword.value.trim();
+    confirmPassword = inputConfirmPassword.value.trim();
 
     limpiarWarnings();
     if(!validarPasswords()){
@@ -75,9 +77,30 @@ btn_update_password.addEventListener("click", async e => {
     }
 
     const datos = new FormData();
-    datos.append('name', name);
     datos.append('password', password);
     datos.append('confirm_password', confirmPassword);
+
+    const res = await fetch(
+        `${APP_ROOT}validar_nueva_password.php`,
+        {method: "POST", body: datos}
+    );
+
+    const resObj = await res.json();
+    if (resObj.errors) {
+        mostrarAvisos(resObj.errors);
+        return;
+    }
+
+    Swal.fire({
+        title: 'Actualizacion Exitosa',
+        icon: 'success',
+        text: 'Se cerrará tu sesión para actualizar tus datos',
+        confirmButtonText: 'Continuar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "/practicas/practica05-1/logout.php";
+        }
+    });
 })
 
 function validarLlenos() {
@@ -98,6 +121,7 @@ function validarLlenos() {
 
 function validarPasswords() {
     let valid = true;
+    let pattern = /^[a-z0-9_]{5,}$/;
 
     if (!password) {
         warnPassword.innerHTML = "Introduzca una contraseña";
@@ -109,10 +133,18 @@ function validarPasswords() {
         valid = false;
     }
 
-    return valid;
+    if(!valid){
+        return valid;
+    }
 
     if (confirmPassword != password) {
         warnConfPassword.innerHTML = "Las contraseñas no coinciden";
+        return false;
+    }
+
+    pattern = /^[a-zA-Z0-9_]{8,}$/;
+    if (!pattern.test(password)) {
+        warnPassword.innerHTML = "La contraseña debe de ser de mínimo 8 caracteres y sólo incluye letras (a-z) y números (0-9)";
         return false;
     }
 
@@ -123,6 +155,8 @@ function mostrarAvisos(errors) {
     const warnings = [
         this.warnName = warnName,
         this.warnGender = warnGender,
+        this.warnPassword = warnPassword,
+        this.warnConfPassword = warnConfPassword,
     ];
 
     for (const error of errors) {
