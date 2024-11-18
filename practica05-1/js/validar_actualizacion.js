@@ -142,7 +142,7 @@ function validarPasswords() {
         return false;
     }
 
-    pattern = /^[a-zA-Z0-9_]{8,}$/;
+    pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (!pattern.test(password)) {
         warnPassword.innerHTML = "La contraseña debe de ser de mínimo 8 caracteres y sólo incluye letras (a-z) y números (0-9)";
         return false;

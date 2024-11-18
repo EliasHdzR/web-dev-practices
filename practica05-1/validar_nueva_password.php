@@ -27,9 +27,9 @@
     }
 
     // VALIDAR FORMATO DE USERNAME Y CONTRASEÑA
-    $pattern = "/^[a-zA-Z0-9]{8,}$/";
+    $pattern = "/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/";
     if (!preg_match($pattern, $password)) {
-        $error = ["pos" => "2", "msg" => "La contraseña debe de ser de mínimo 8 caracteres y sólo incluye letras (a-z) y números (0-9)"];
+        $error = ["pos" => "2", "msg" => "La contraseña debe de ser de mínimo 8 caracteres y debe incluir letras (a-z) y números (0-9)"];
         $errors[] = $error;
     }
 
