@@ -15,16 +15,16 @@ function funcionalidadBotones(){
             const btnReset = buttons[0];
             btnReset.addEventListener("click", function() {resetearPassword(btnReset.id)});
             const btnDelete = buttons[1];
-            btnDelete.addEventListener("click", function() {eliminarCuenta(btnReset.id)});
+            btnDelete.addEventListener("click", function() {eliminarCuenta(btnDelete.id)});
         }
 
         if(buttons.length == 3){
             const btnUpgrade = buttons[0];
-            btnUpgrade.addEventListener("click", function (){upgradearCuenta(btnReset.id)});
+            btnUpgrade.addEventListener("click", function (){upgradearCuenta(btnUpgrade.id)});
             const btnReset = buttons[1];
             btnReset.addEventListener("click", function() {resetearPassword(btnReset.id)});
             const btnDelete = buttons[2];
-            btnDelete.addEventListener("click", function() {eliminarCuenta(btnReset.id)});
+            btnDelete.addEventListener("click", function() {eliminarCuenta(btnDelete.id)});
         }
     }
 }
@@ -58,7 +58,10 @@ function upgradearCuenta(id){
                 confirmButtonText: 'Aceptar',
             }).then((result) => {
                 if(result.isConfirmed){
-                    window.location.reload();
+                    const button = document.getElementById(id);
+                    const row = button.parentNode.parentNode;
+                    button.parentNode.removeChild(button);
+                    row.firstChild.innerHTML = "Administrador";
                 }
             });
         }
@@ -125,7 +128,9 @@ function eliminarCuenta(id){
                 confirmButtonText: 'Aceptar',
             }).then((result) => {
                 if(result.isConfirmed){
-                    window.location.reload();
+                    const button = document.getElementById(id);
+                    const row = button.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
                 }
             });
         }
