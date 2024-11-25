@@ -17,7 +17,7 @@ if (empty($_FILES) || !isset($_FILES["archivo"])) {
 
 // Obtención de los datos del archivo subido
 $archivo = $_FILES["archivo"];  // Assoc array con los datos del archivo subido
-$tamaño = $archivo["size"];  // tamaño del archivo en bytes
+$tamanio = $archivo["size"];  // tamaño del archivo en bytes
 $nombreArchivo = $archivo["name"];  // nombre original del archivo subido
 $rutaTemporal = $archivo["tmp_name"];  // Obtención de la ruta temporal del archivo
 
@@ -32,11 +32,8 @@ if (!$seGuardoArchivo) {  // No se guardo?
     exit();
 }
 
-// Además de archivos, podermos recibir más datos
-$otroDato = filter_input(INPUT_POST, "otroDato");
-
 // establecemos el mensaje de respuesta
-$resObj["mensaje"] = "Archivo guardado correctamente. OtroDato = \"$otroDato\"";
+$resObj["mensaje"] = "Archivo guardado correctamente.";
 
 // Regresamos el JSON de la respuesta
 echo json_encode($resObj);

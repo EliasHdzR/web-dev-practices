@@ -38,10 +38,6 @@
                 </tr>
                 <?php
                     foreach ($usuarios as $usuario) {
-                        if ($usuario["id"] == $USUARIO_ID) {
-                            continue;
-                        }
-
                         echo "<tr>";
                             if ($usuario["es_admin"] == 1) {
                                 echo "<td>Administrador</td>";
