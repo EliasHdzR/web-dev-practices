@@ -15,6 +15,29 @@ selectAnios.selectedIndex = year - year;
 
 funcionalidadBotones();
 
+function funcionalidadBotones(){
+    for(let i = 0; i < trs.length; i++){
+        const tr = trs[i];
+        const link = tr.getElementsByTagName("a")[0];
+        link.addEventListener("click", function(e){ verArchivo(e, link.id) });
+    }
+
+    for(let i = 0; i < tdsBotones.length; i++){
+        const td = tdsBotones[i];
+        const botones = td.getElementsByTagName("button");
+
+        const btnVisibilidad = botones[0];
+        if(btnVisibilidad.className === "btn-privar"){
+            btnVisibilidad.addEventListener("click", function(){ privarArchivo(btnVisibilidad.id) });
+        } else {
+            btnVisibilidad.addEventListener("click", function(){ publicarArchivo(btnVisibilidad.id) });
+        }
+
+        const btnBorrar = botones[1];
+        btnBorrar.addEventListener("click", function(){ eliminarArchivo(btnBorrar.id) });
+    }
+}
+
 async function filtrarArchivos(){
     const mesElegido = selectMeses.value;
     const anioElegido = selectAnios.value;
@@ -39,9 +62,19 @@ async function filtrarArchivos(){
 
     resObj.archivos.forEach((obj) => {
         const newRow = document.createElement('tr');
+        newRow.setAttribute('class', 'tr-datos');
+
+        const a = document.createElement('a');
+        a.setAttribute('href', '');
+        a.setAttribute('id', `btn-view-${obj["id"]}`);
+        a.innerHTML = obj["nombre_archivo"];
+
+        const tdLink = document.createElement('td');
+        tdLink.appendChild(a);
+        newRow.appendChild(tdLink);
 
         for (const data in obj) {
-            if (data !== "usuario_subio_id" && data !== "id" && data !== "es_publico") {
+            if (data !== "usuario_subio_id" && data !== "id" && data !== "nombre_archivo" && data !== "es_publico") {
                 const td = document.createElement('td');
                 td.innerHTML = obj[data];
                 newRow.appendChild(td);
@@ -79,29 +112,6 @@ async function filtrarArchivos(){
     });
 
     funcionalidadBotones();
-}
-
-function funcionalidadBotones(){
-    for(let i = 0; i < trs.length; i++){
-        const tr = trs[i];
-        const link = tr.getElementsByTagName("a")[0];
-        link.addEventListener("click", function(e){ verArchivo(e, link.id) });
-    }
-
-    for(let i = 0; i < tdsBotones.length; i++){
-        const td = tdsBotones[i];
-        const botones = td.getElementsByTagName("button");
-
-        const btnVisibilidad = botones[0];
-        if(btnVisibilidad.className === "btn-privar"){
-            btnVisibilidad.addEventListener("click", function(){ privarArchivo(btnVisibilidad.id) });
-        } else {
-            btnVisibilidad.addEventListener("click", function(){ publicarArchivo(btnVisibilidad.id) });
-        }
-
-        const btnBorrar = botones[1];
-        btnBorrar.addEventListener("click", function(){ eliminarArchivo(btnBorrar.id) });
-    }
 }
 
 function verArchivo(e, id) {
