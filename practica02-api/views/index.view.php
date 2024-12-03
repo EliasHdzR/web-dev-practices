@@ -12,40 +12,43 @@
 <div class="app">
     <h1>Tic Tac Toe - Minimalista</h1>
 
-    <div class="puntuaciones-contenedor">
-        <button class="btn-puntuaciones">Puntuaciones</button>
-        <div class="puntuaciones-dropdown">
-            <table id="puntuaciones-tabla">
-                <tr>
-                    <th>Lugar</th>
-                    <th>Nombre</th>
-                    <th>Tiempo (ms)</th>
-                    <th>Fecha</th>
-                </tr>
-                <?php
-                    $position =  1;
-                    foreach ($scores as $score) {
-                        if($position > 10) {
-                            break;
+    <div style="display: flex;">
+        <div class="puntuaciones-contenedor">
+            <button class="btn-puntuaciones" style="margin-right: 5px">Puntuaciones</button>
+            <div class="puntuaciones-dropdown">
+                <table id="puntuaciones-tabla">
+                    <tr>
+                        <th>Lugar</th>
+                        <th>Nombre</th>
+                        <th>Tiempo (ms)</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <?php
+                        $position =  1;
+                        foreach ($scores as $score) {
+                            if($position > 10) {
+                                break;
+                            }
+                            echo "<tr>";
+                            echo "<td>";
+                            echo $position++;
+                            echo "</td>";
+                            echo "<td>";
+                            echo $score['player'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $score['score'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $score['date'];
+                            echo "</td>";
+                            echo "</tr>";
                         }
-                        echo "<tr>";
-                        echo "<td>";
-                        echo $position++;
-                        echo "</td>";
-                        echo "<td>";
-                        echo $score['player'];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $score['score'];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $score['date'];
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                ?>
-            </table>
+                    ?>
+                </table>
+            </div>
         </div>
+        <button id="btn-navegar" class="btn-navegar">Ver Otros Juegos</button>
     </div>
 
     <p style="font-size: 30px;"><span id="minutos">00</span>:<span id="segundos">00</span>:<span

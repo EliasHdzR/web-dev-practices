@@ -33,6 +33,10 @@ function reiniciarJuego(){
     window.location.reload();
 }
 
+const btnNavegar = document.querySelector('#btn-navegar');
+btnNavegar.addEventListener('click', () => {
+    window.location.href = '/practicas/practica02-api/get_games.php';
+});
 
 ///////////////////////////////////////
 // variables del cronometro

@@ -24,6 +24,13 @@ body {
     cursor: pointer;
 }
 
+.btn-navegar {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
 .puntuaciones-dropdown {
     display: none;
     position: absolute;
@@ -101,4 +108,13 @@ input[type=text] {
   
 .guardar:hover {
     background-color: #4b8f8c;
+}
+
+.tabla-puntuaciones {
+    border: 1px solid black;
+}
+
+.tabla-puntuaciones th, .tabla-puntuaciones td {
+    border: 1px solid white;
+    padding: 5px;
 }

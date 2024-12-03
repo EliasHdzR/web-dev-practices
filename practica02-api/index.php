@@ -13,4 +13,4 @@
     curl_close($ch);
     $scores = json_decode($responseContent, true);
 
-    include "index.view.php";
+    include "views/index.view.php";
