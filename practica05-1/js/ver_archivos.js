@@ -3,6 +3,7 @@ const trs = table.getElementsByClassName("tr-datos");
 const tdsBotones = table.getElementsByClassName("td-botones");
 const selectMeses = document.querySelector("#select-meses");
 const selectAnios = document.querySelector("#select-anios");
+const propietarioID = document.querySelector("#propietario-id");
 const btnFiltrar = document.querySelector('#btn-filtrar');
 btnFiltrar.addEventListener("click", filtrarArchivos);
 
@@ -26,34 +27,26 @@ function funcionalidadBotones(){
         const td = tdsBotones[i];
         const botones = td.getElementsByTagName("button");
 
-        const btnVisibilidad = botones[0];
-        if(btnVisibilidad.className === "btn-privar"){
-            btnVisibilidad.addEventListener("click", function(){ privarArchivo(btnVisibilidad.id) });
-        } else {
-            btnVisibilidad.addEventListener("click", function(){ publicarArchivo(btnVisibilidad.id) });
-        }
-
-        const btnFavorito = botones[1];
+        const btnFavorito = botones[0];
         if(btnFavorito.className === "btn-marcar-favorito"){
             btnFavorito.addEventListener("click", function(){ marcarFavorito(btnFavorito.id) });
         } else {
             btnFavorito.addEventListener("click", function(){ quitarFavorito(btnFavorito.id) });
         }
-
-        const btnBorrar = botones[2];
-        btnBorrar.addEventListener("click", function(){ eliminarArchivo(btnBorrar.id) });
     }
 }
 
 async function filtrarArchivos(){
     const mesElegido = selectMeses.value;
     const anioElegido = selectAnios.value;
+    const propietario = propietarioID.value;
 
     const datos = new FormData();
     datos.append('mes', mesElegido);
     datos.append('anio', anioElegido);
+    datos.append('propietario', propietario);
     const res = await fetch(
-        `${APP_ROOT}archivos_methods/filtrar_archivos.php`,
+        `${APP_ROOT}busqueda_files_usuarios/filtrar_archivos.php`,
         {method: "POST", body: datos}
     );
 
@@ -81,28 +74,11 @@ async function filtrarArchivos(){
         newRow.appendChild(tdLink);
 
         for (const data in obj) {
-            if (data !== "id" && data !== "nombre_archivo" && data !== "es_publico" && data !== "favorito") {
+            if (data !== "id" && data !== "nombre_archivo" && data !== "favorito") {
                 const td = document.createElement('td');
                 td.innerHTML = obj[data];
                 newRow.appendChild(td);
             }
-        }
-
-        const tdVisibilidad = document.createElement('td');
-        let btnAcceso;
-        newRow.appendChild(tdVisibilidad);
-        if(obj["es_publico"] == 1){
-            tdVisibilidad.innerHTML = "Público";
-            btnAcceso = document.createElement('button');
-            btnAcceso.setAttribute('id',`btn-privar-${obj["id"]}`);
-            btnAcceso.innerHTML = "Hacer Privado";
-            btnAcceso.setAttribute('class', 'btn-privar');
-        } else {
-            tdVisibilidad.innerHTML = "Privado";
-            btnAcceso = document.createElement('button');
-            btnAcceso.setAttribute('id',`btn-publicar-${obj["id"]}`);
-            btnAcceso.innerHTML = "Hacer Público";
-            btnAcceso.setAttribute('class', 'btn-publicar');
         }
 
         let btnFavorito;
@@ -121,13 +97,7 @@ async function filtrarArchivos(){
         const tdButtons = document.createElement('td');
         tdButtons.setAttribute('class','td-botones');
         newRow.appendChild(tdButtons);
-        tdButtons.appendChild(btnAcceso);
         tdButtons.appendChild(btnFavorito);
-
-        const delBtn = document.createElement('button');
-        delBtn.setAttribute('id',`btn-delete-${obj["id"]}`);
-        delBtn.innerHTML = "Eliminar Archivo";
-        tdButtons.appendChild(delBtn);
 
         tbody.appendChild(newRow);
     });
@@ -144,90 +114,6 @@ function verArchivo(e, id) {
 
     const url = `${APP_ROOT}archivos_methods/archivo.php?id=${idArchivo}`;
     window.open(url, '_blank');
-}
-
-function privarArchivo(id){
-    const idArchivo = id.split("-")[2];
-
-    Swal.fire({
-        title: 'Despublicar Archivo',
-        icon: 'question',
-        text: '¿Deseas que el archivo sea privado?',
-        confirmButtonText: 'Aceptar',
-        showCancelButton: true,
-        cancelButtonText: 'Cancelar'
-    }).then(async (result) => {
-        if (result.isConfirmed) {
-            const datos = new FormData();
-            datos.append('id', idArchivo);
-
-            const res = await fetch(
-                `${APP_ROOT}archivos_methods/despublicar_archivo.php`,
-                {method: "POST", body: datos}
-            );
-
-            const resObj = await res.json();
-
-            Swal.fire({
-                title: resObj["titulo"],
-                icon: resObj["estado"],
-                text: resObj["mensaje"],
-                confirmButtonText: 'Aceptar',
-            }).then((result) => {
-                if(result.isConfirmed){
-                    const button = document.getElementById(id);
-                    const row = button.parentNode.parentNode;
-                    button.innerHTML = 'Hacer Público';
-                    button.setAttribute('id', `btn-publicar-${idArchivo}`);
-                    button.setAttribute('class', 'btn-publicar');
-                    row.children[5].innerHTML = 'Privado';
-                    funcionalidadBotones();
-                }
-            });
-        }
-    });
-}
-
-function publicarArchivo(id){
-    const idArchivo = id.split("-")[2];
-
-    Swal.fire({
-        title: 'Publicar Archivo',
-        icon: 'question',
-        text: '¿Deseas publicar el archivo?',
-        confirmButtonText: 'Aceptar',
-        showCancelButton: true,
-        cancelButtonText: 'Cancelar'
-    }).then(async (result) => {
-        if (result.isConfirmed) {
-            const datos = new FormData();
-            datos.append('id', idArchivo);
-
-            const res = await fetch(
-                `${APP_ROOT}archivos_methods/publicar_archivo.php`,
-                {method: "POST", body: datos}
-            );
-
-            const resObj = await res.json();
-
-            Swal.fire({
-                title: resObj["titulo"],
-                icon: resObj["estado"],
-                text: resObj["mensaje"],
-                confirmButtonText: 'Aceptar',
-            }).then((result) => {
-                if(result.isConfirmed){
-                    const button = document.getElementById(id);
-                    const row = button.parentNode.parentNode;
-                    button.innerHTML = 'Hacer Privado';
-                    button.setAttribute('id', `btn-privar-${idArchivo}`);
-                    button.setAttribute('class', 'btn-privar');
-                    row.children[5].innerHTML = 'Público';
-                    funcionalidadBotones();
-                }
-            });
-        }
-    });
 }
 
 function marcarFavorito(id){
@@ -304,44 +190,6 @@ function quitarFavorito(id){
                     button.setAttribute('id', `btn-marcar-favorito-${idArchivo}`);
                     button.setAttribute('class', 'btn-marcar-favorito');
                     funcionalidadBotones();
-                }
-            });
-        }
-    });
-}
-
-function eliminarArchivo(id){
-    const idArchivo = id.split("-")[2];
-
-    Swal.fire({
-        title: 'Eliminar Archivo',
-        icon: 'warning',
-        text: 'Se eliminará el archivo seleccionado',
-        confirmButtonText: 'Aceptar',
-        showCancelButton: true,
-        cancelButtonText: 'Cancelar'
-    }).then(async (result) => {
-        if (result.isConfirmed) {
-            const datos = new FormData();
-            datos.append('id', idArchivo);
-
-            const res = await fetch(
-                `${APP_ROOT}archivos_methods/eliminar_archivo.php`,
-                {method: "POST", body: datos}
-            );
-
-            const resObj = await res.json();
-
-            Swal.fire({
-                title: resObj["titulo"],
-                icon: resObj["estado"],
-                text: resObj["mensaje"],
-                confirmButtonText: 'Aceptar',
-            }).then((result) => {
-                if(result.isConfirmed){
-                    const button = document.getElementById(id);
-                    const row = button.parentNode.parentNode;
-                    row.parentNode.removeChild(row);
                 }
             });
         }

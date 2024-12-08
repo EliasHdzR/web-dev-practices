@@ -21,11 +21,11 @@
     </div>
       
     <?php require APP_PATH . "html_parts/menu.php"; ?>
-      
+
     <div class="row">
         <div class="leftcolumn">
             <div class="card">
-                <h3>Listado de Archivos</h3>
+                <h3>Mis Archivos</h3>
                 <a href="<?= APP_ROOT ?>subir_archivo.php">Subir Archivo</a><br><br>
 
                 <select id="select-meses">
@@ -48,16 +48,6 @@
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
-                    <option value="2016">2016</option>
-                    <option value="2015">2015</option>
-                    <option value="2014">2014</option>
-                    <option value="2013">2013</option>
-                    <option value="2012">2012</option>
-                    <option value="2011">2011</option>
-                    <option value="2010">2010</option>
                 </select>
                 <button id="btn-filtrar">Filtrar</button>
 
@@ -72,35 +62,51 @@
                         <th>Acciones</th>
                     </tr>
                     <?php
-                        foreach ($archivos as $archivo) {
-                            echo "<tr class='tr-datos'>";
-                            echo "<td><a href='' id=btn-view-" . $archivo["id"] . ">" . $archivo["nombre_archivo"] . "</a></td>";
-                            echo "<td>" . $archivo["descripcion"] . "</td>";
-                            echo "<td>" . $archivo["fecha_subido"] . "</td>";
-                            echo "<td>" . $archivo["tamaño"] . "</td>";
-                            echo "<td>" . $archivo["cant_descargas"] . "</td>";
+                        foreach ($archivos as $archivo) { ?>
+                            <tr class='tr-datos'>
+                                <td>
+                                    <a href='' id=btn-view-<?= $archivo["id"] ?>>
+                                        <?= $archivo["nombre_archivo"] ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <?= $archivo["descripcion"] ?>
+                                </td>
+                                <td>
+                                    <?= $archivo["fecha_subido"] ?>
+                                </td>
+                                <td>
+                                    <?= $archivo["tamaño"] ?>
+                                </td>
+                                <td>
+                                    <?= $archivo["cant_descargas"] ?>
+                                </td>
+                                <td>
+                                    <?php if ($archivo["es_publico"] == 1) {
+                                        echo "Público";
+                                    } else {
+                                        echo "Privado";
+                                    } ?>
+                                </td>
+                                <td class='td-botones'>
+                                    <?php
+                                        if ($archivo["es_publico"] == 1) {
+                                            echo "<button class='btn-privar' id=btn-privar-" . $archivo["id"] . ">Hacer Privado</button>";
+                                        } else {
+                                            echo "<button class='btn-publicar' id=btn-publicar-" . $archivo["id"] . ">Hacer Público</button>";
+                                        }
 
-                            echo "<td>";
-                            if ($archivo["es_publico"] == 1) {
-                                echo "Público";
-                            } else {
-                                echo "Privado";
-                            }
+                                        if($archivo["favorito"]){
+                                            echo "<button class='btn-quitar-favorito' id=btn-quitar-favorito-" . $archivo["id"] . ">Quitar Favorito</button>";
+                                        } else {
+                                            echo "<button class='btn-marcar-favorito' id=btn-marcar-favorito-" . $archivo["id"] . ">Marcar Favorito</button>";
+                                        }
 
-                            echo "</td>";
-                            echo "<td class='td-botones'>";
-                            if($archivo["usuario_subio_id"] === $USUARIO_ID){
-                                if ($archivo["es_publico"] == 1) {
-                                    echo "<button class='btn-privar' id=btn-privar-" . $archivo["id"] . ">Hacer Privado</button>";
-                                } else {
-                                    echo "<button class='btn-publicar' id=btn-publicar-" . $archivo["id"] . ">Hacer Público</button>";
-                                }
-
-                                echo "<button id=btn-delete-" . $archivo["id"] . ">Eliminar Archivo</button>";
-                            }
-                            echo "</td></tr>";
-                        }
-                    ?>
+                                        echo "<button id=btn-delete-" . $archivo["id"] . ">Eliminar Archivo</button>";
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
                 </table>
 
             </div>

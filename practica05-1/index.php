@@ -24,12 +24,17 @@
         $expira   // cuándo exipira (fecha UNIX)
     );
 
-    $sqlCmd = "SELECT id, nombre_archivo, descripcion, fecha_subido, tamaño, cant_descargas, es_publico, usuario_subio_id FROM archivos 
-                WHERE  fecha_borrado IS NULL AND (usuario_subio_id = ? OR es_publico = 1) AND MONTH(fecha_subido) = ? AND YEAR(fecha_subido) = ?
-                ORDER BY fecha_subido DESC";
+    $sqlCmd = "SELECT archivos.id, favoritos.archivo_id AS favorito, nombre_archivo, descripcion, fecha_subido, tamaño, cant_descargas, es_publico
+                FROM archivos LEFT JOIN favoritos ON archivos.id = favoritos.archivo_id AND favoritos.usuario_id = ?
+                WHERE fecha_borrado IS NULL
+                    AND usuario_subio_id = ?
+                    AND MONTH(fecha_subido) = ? 
+                    AND YEAR(fecha_subido) = ?
+                ORDER BY archivos.fecha_subido DESC";
+
     $db = getDbConnection();
     $stmt = $db->prepare($sqlCmd);
-    $sqlParams = [$USUARIO_ID, date("m"), date("Y")];
+    $sqlParams = [ $USUARIO_ID, $USUARIO_ID, date("m"), date("Y")];
     $stmt->execute($sqlParams);
 
     $archivos = $stmt->fetchAll();
